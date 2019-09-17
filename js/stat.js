@@ -28,10 +28,6 @@ var getBarColor = function () {
 };
 
 var getMaxElement = function (arr) {
-  if (!arr) {
-    return undefined;
-  }
-
   var maxElement = arr[0];
 
   for (var i = 1; i < arr.length; i++) {
