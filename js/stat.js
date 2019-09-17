@@ -63,8 +63,10 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', CLOUD_X + HEADING_PADDING_X, CLOUD_Y + HEADING_PADDING_Y);
   ctx.fillText('Список результатов:', CLOUD_X + HEADING_PADDING_X, CLOUD_Y + HEADING_PADDING_Y + HEADING_LINE_HEIGHT);
 
+  var barHeight = MAX_BAR_HEIGHT;
+
   for (var i = 0; i < names.length; i++) {
-    var barHeight = (times[i] / maxScore) * MAX_BAR_HEIGHT;
+    barHeight = (times[i] / maxScore) * MAX_BAR_HEIGHT;
 
     ctx.fillStyle = TEXT_COLOR;
     ctx.fillText(names[i], graphOriginX + (BAR_WIDTH + BAR_MARGIN_X) * i, graphOriginY + SCORE_LINE_HEIGHT + MAX_BAR_HEIGHT + NAME_PADDING_Y);
