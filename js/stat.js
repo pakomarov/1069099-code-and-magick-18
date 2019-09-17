@@ -54,6 +54,10 @@ var renderCloud = function (ctx, x, y) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
+  var graphOriginX = CLOUD_X + GRAPH_PADDING_X;
+  var graphOriginY = CLOUD_Y + HEADING_PADDING_Y + HEADING_LINE_HEIGHT * 2 + HEADING_MARGIN_Y;
+  var maxScore = getMaxElement(times);
+
   renderCloud(ctx, CLOUD_X, CLOUD_Y);
 
   ctx.font = FONT;
@@ -63,16 +67,11 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.fillText('Ура вы победили!', CLOUD_X + HEADING_PADDING_X, CLOUD_Y + HEADING_PADDING_Y);
   ctx.fillText('Список результатов:', CLOUD_X + HEADING_PADDING_X, CLOUD_Y + HEADING_PADDING_Y + HEADING_LINE_HEIGHT);
 
-  var graphOriginX = CLOUD_X + GRAPH_PADDING_X;
-  var graphOriginY = CLOUD_Y + HEADING_PADDING_Y + HEADING_LINE_HEIGHT * 2 + HEADING_MARGIN_Y;
-
-  var maxScore = getMaxElement(times);
-
   for (var i = 0; i < names.length; i++) {
+    var barHeight = (times[i] / maxScore) * MAX_BAR_HEIGHT;
+
     ctx.fillStyle = TEXT_COLOR;
     ctx.fillText(names[i], graphOriginX + (BAR_WIDTH + BAR_MARGIN_X) * i, graphOriginY + SCORE_LINE_HEIGHT + MAX_BAR_HEIGHT + NAME_PADDING_Y);
-
-    var barHeight = (times[i] / maxScore) * MAX_BAR_HEIGHT;
 
     ctx.fillText(Math.floor(times[i]), graphOriginX + (BAR_WIDTH + BAR_MARGIN_X) * i, graphOriginY + MAX_BAR_HEIGHT - barHeight);
 
