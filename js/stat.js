@@ -23,7 +23,7 @@ var BAR_MARGIN_X = 50;
 var USER_NAME = 'Вы';
 var BAR_COLOR_USER = 'rgba(255, 0, 0, 1)';
 
-var barColor = function () {
+var getBarColor = function () {
   return 'hsl(240, ' + Math.random() * 100 + '%, 50%)';
 };
 
@@ -76,7 +76,7 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillText(Math.floor(times[i]), graphOriginX + (BAR_WIDTH + BAR_MARGIN_X) * i, graphOriginY + MAX_BAR_HEIGHT - barHeight);
 
-    ctx.fillStyle = barColor();
+    ctx.fillStyle = getBarColor();
     if (names[i] === USER_NAME) {
       ctx.fillStyle = BAR_COLOR_USER;
     }
