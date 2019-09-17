@@ -71,10 +71,7 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillText(Math.floor(times[i]), graphOriginX + (BAR_WIDTH + BAR_MARGIN_X) * i, graphOriginY + MAX_BAR_HEIGHT - barHeight);
 
-    ctx.fillStyle = getBarColor();
-    if (names[i] === USER_NAME) {
-      ctx.fillStyle = BAR_COLOR_USER;
-    }
+    ctx.fillStyle = names[i] === USER_NAME ? BAR_COLOR_USER : getBarColor();
     ctx.fillRect(graphOriginX + (BAR_WIDTH + BAR_MARGIN_X) * i, graphOriginY + SCORE_LINE_HEIGHT + MAX_BAR_HEIGHT - barHeight, BAR_WIDTH, barHeight);
   }
 };
