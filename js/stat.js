@@ -9,6 +9,7 @@ var SHADE_COLOR = 'rgba(0, 0, 0, 0.7)';
 var CLOUD_X = 100;
 var CLOUD_Y = 10;
 var FONT = '16px PT Mono';
+var TEXT_BASELINE = 'hanging';
 var TEXT_COLOR = '#000';
 var HEADING_PADDING_X = 20;
 var HEADING_PADDING_Y = 20;
@@ -29,12 +30,12 @@ var getBarColor = function () {
   return 'hsl(240, ' + Math.random() * 100 + '%, 50%)';
 };
 
-var getMaxElement = function (arr) {
-  var maxElement = arr[0];
+var getMaxElement = function (array) {
+  var maxElement = array[0];
 
-  for (var i = 1; i < arr.length; i++) {
-    if (arr[i] > maxElement) {
-      maxElement = arr[i];
+  for (var i = 1; i < array.length; i++) {
+    if (array[i] > maxElement) {
+      maxElement = array[i];
     }
   }
 
@@ -53,7 +54,7 @@ var renderCloud = function (ctx, x, y) {
 
 var setTextParameters = function (ctx) {
   ctx.font = FONT;
-  ctx.textBaseline = 'hanging';
+  ctx.textBaseline = TEXT_BASELINE;
 };
 
 var renderHeading = function (ctx) {
