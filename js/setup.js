@@ -6,8 +6,12 @@ var MOCKUP_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 1
 var MOCKUP_EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 var MOCKUP_WIZARDS_COUNT = 4;
 
-var userDialog = document.querySelector('.setup');
-userDialog.classList.remove('hidden');
+
+var userDialogNode = document.querySelector('.setup');
+var similarWizardTemplateNode = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var similarListNode = document.querySelector('.setup-similar-list');
+var setupSimilarNode = document.querySelector('.setup-similar');
+
 
 var getRandomEntry = function (array) {
   return array[Math.floor(Math.random() * array.length)];
@@ -39,10 +43,8 @@ var generateMockupWizards = function (mockupWizardsCount) {
   return wizards;
 };
 
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-
 var renderWizardElement = function (wizard) {
-  var wizardElement = similarWizardTemplate.cloneNode('true');
+  var wizardElement = similarWizardTemplateNode.cloneNode('true');
 
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
@@ -61,9 +63,14 @@ var fillElementWithWizards = function (element, wizards) {
   element.appendChild(fragment);
 };
 
-var similarListElement = document.querySelector('.setup-similar-list');
-var mockupWizards = generateMockupWizards(MOCKUP_WIZARDS_COUNT);
+var fillElementWithMockupWizards = function (element) {
+  var mockupWizards = generateMockupWizards(MOCKUP_WIZARDS_COUNT);
+  fillElementWithWizards(element, mockupWizards);
+};
 
-fillElementWithWizards(similarListElement, mockupWizards);
 
-document.querySelector('.setup-similar').classList.remove('hidden');
+userDialogNode.classList.remove('hidden');
+
+fillElementWithMockupWizards(similarListNode);
+
+setupSimilarNode.classList.remove('hidden');
