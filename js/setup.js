@@ -1,5 +1,6 @@
 'use strict';
 
+
 var MOCKUP_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var MOCKUP_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var MOCKUP_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -13,64 +14,71 @@ var similarListNode = document.querySelector('.setup-similar-list');
 var setupSimilarNode = document.querySelector('.setup-similar');
 
 
-var getRandomEntry = function (array) {
+var getRandomArrayEntry = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
 
-var generateMockupWizardName = function () {
-  return getRandomEntry(MOCKUP_NAMES) + ' ' + getRandomEntry(MOCKUP_SURNAMES);
+var createMockupWizardName = function () {
+  return getRandomArrayEntry(MOCKUP_NAMES) + ' ' + getRandomArrayEntry(MOCKUP_SURNAMES);
 };
 
-var generateMockupCoatColor = function () {
-  return getRandomEntry(MOCKUP_COAT_COLORS);
+var createMockupCoatColor = function () {
+  return getRandomArrayEntry(MOCKUP_COAT_COLORS);
 };
 
-var generateMockupEyesColor = function () {
-  return getRandomEntry(MOCKUP_EYE_COLORS);
+var createMockupEyesColor = function () {
+  return getRandomArrayEntry(MOCKUP_EYE_COLORS);
 };
 
-var generateMockupWizard = function () {
-  return {name: generateMockupWizardName(), coatColor: generateMockupCoatColor(), eyesColor: generateMockupEyesColor()};
+var createMockupWizard = function () {
+  return {
+    name: createMockupWizardName(),
+    coatColor: createMockupCoatColor(),
+    eyesColor: createMockupEyesColor()
+  };
 };
 
-var generateMockupWizards = function (mockupWizardsCount) {
-  var wizards = [];
+var createMockupWizards = function () {
+  var mockupWizards = [];
 
-  for (var i = 0; i < mockupWizardsCount; i++) {
-    wizards.push(generateMockupWizard());
+  for (var i = 0; i < MOCKUP_WIZARDS_COUNT; i++) {
+    mockupWizards.push(createMockupWizard());
   }
 
-  return wizards;
+  return mockupWizards;
 };
 
-var renderWizardElement = function (wizard) {
-  var wizardElement = similarWizardTemplateNode.cloneNode('true');
+var createWizardNode = function (wizard) {
+  var newWizardNode = similarWizardTemplateNode.cloneNode('true');
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  newWizardNode.querySelector('.setup-similar-label').textContent = wizard.name;
+  newWizardNode.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+  newWizardNode.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
-  return wizardElement;
+  return newWizardNode;
 };
 
-var fillElementWithWizards = function (element, wizards) {
+var createWizardNodes = function (wizards) {
+  return wizards.map(createWizardNode);
+};
+
+var renderNodes = function (targetNode, nodes) {
   var fragment = document.createDocumentFragment();
 
-  for (var i = 0; i < wizards.length; i++) {
-    fragment.appendChild(renderWizardElement(wizards[i]));
+  for (var i = 0; i < nodes.length; i++) {
+    fragment.appendChild(nodes[i]);
   }
 
-  element.appendChild(fragment);
-};
-
-var fillElementWithMockupWizards = function (element) {
-  var mockupWizards = generateMockupWizards(MOCKUP_WIZARDS_COUNT);
-  fillElementWithWizards(element, mockupWizards);
+  targetNode.appendChild(fragment);
 };
 
 
 userDialogNode.classList.remove('hidden');
 
-fillElementWithMockupWizards(similarListNode);
+var mockupWizards = createMockupWizards();
+
+var wizardNodes = createWizardNodes(mockupWizards);
+
+renderNodes(similarListNode, wizardNodes);
 
 setupSimilarNode.classList.remove('hidden');
