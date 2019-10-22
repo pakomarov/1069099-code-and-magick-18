@@ -4,11 +4,12 @@
 // Блок констант
 var KEYCODE_ESC = 27;
 var KEYCODE_ENTER = 13;
+var MOCKUP_WIZARDS_COUNT = 4;
 var MOCKUP_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var MOCKUP_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
-var MOCKUP_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
-var MOCKUP_EYE_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
-var MOCKUP_WIZARDS_COUNT = 4;
+var VALID_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
+var VALID_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
+var VALID_FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 
 // Поиск DOM-элементов
@@ -17,6 +18,12 @@ var setupOpenIconNode = setupOpenNode.querySelector('.setup-open-icon');
 var setupNode = document.querySelector('.setup');
 var setupUserNameNode = setupNode.querySelector('.setup-user-name');
 var setupCloseNode = setupNode.querySelector('.setup-close');
+var setupWizardCoatVisualNode = setupNode.querySelector('.setup-wizard .wizard-coat');
+var setupWizardCoatInputNode = setupNode.querySelector('.setup-wizard-appearance input[name="coat-color"]');
+var setupWizardEyesVisualNode = setupNode.querySelector('.setup-wizard .wizard-eyes');
+var setupWizardEyesInputNode = setupNode.querySelector('.setup-wizard-appearance input[name="eyes-color"]');
+var setupWizardFireballVisualNode = setupNode.querySelector('.setup-player .setup-fireball-wrap');
+var setupWizardFireballInputNode = setupWizardFireballVisualNode.querySelector('input');
 var similarWizardTemplateNode = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var similarListNode = document.querySelector('.setup-similar-list');
 var setupSimilarNode = document.querySelector('.setup-similar');
@@ -27,6 +34,18 @@ var getRandomArrayEntry = function (array) {
   return array[Math.floor(Math.random() * array.length)];
 };
 
+var getRandomValidCoatColor = function () {
+  return getRandomArrayEntry(VALID_COAT_COLORS);
+};
+
+var getRandomValidEyesColor = function () {
+  return getRandomArrayEntry(VALID_EYES_COLORS);
+};
+
+var getRandomValidFireballColor = function () {
+  return getRandomArrayEntry(VALID_FIREBALL_COLORS);
+};
+
 
 // Моки
 var createMockupWizardName = function () {
@@ -34,11 +53,11 @@ var createMockupWizardName = function () {
 };
 
 var createMockupCoatColor = function () {
-  return getRandomArrayEntry(MOCKUP_COAT_COLORS);
+  return getRandomValidCoatColor();
 };
 
 var createMockupEyesColor = function () {
-  return getRandomArrayEntry(MOCKUP_EYE_COLORS);
+  return getRandomValidEyesColor();
 };
 
 var createMockupWizard = function () {
@@ -95,6 +114,27 @@ var closePopup = function () {
   document.removeEventListener('keydown', documentKeydownEscHandler);
 };
 
+var changeCustomWizardCoatColor = function () {
+  var newCoatColor = getRandomValidCoatColor();
+
+  setupWizardCoatVisualNode.style.fill = newCoatColor;
+  setupWizardCoatInputNode.value = newCoatColor;
+};
+
+var changeCustomWizardEyesColor = function () {
+  var newEyesColor = getRandomValidEyesColor();
+
+  setupWizardEyesVisualNode.style.fill = newEyesColor;
+  setupWizardEyesInputNode.value = newEyesColor;
+};
+
+var changeCustomFireballColor = function () {
+  var newFireballColor = getRandomValidFireballColor();
+
+  setupWizardFireballVisualNode.style.backgroundColor = newFireballColor;
+  setupWizardFireballInputNode.value = newFireballColor;
+};
+
 
 // Обработчики событий
 var setupOpenClickHandler = function () {
@@ -123,6 +163,18 @@ var documentKeydownEscHandler = function (evt) {
   }
 };
 
+var setupWizardCoatVisualClickHandler = function () {
+  changeCustomWizardCoatColor();
+};
+
+var setupWizardEyesVisualClickHandler = function () {
+  changeCustomWizardEyesColor();
+};
+
+var setupWizardFireballVisualClickHandler = function () {
+  changeCustomFireballColor();
+};
+
 
 var mockupWizards = createMockupWizards();
 var wizardNodes = createWizardNodes(mockupWizards);
@@ -133,3 +185,6 @@ setupOpenNode.addEventListener('click', setupOpenClickHandler);
 setupOpenIconNode.addEventListener('keydown', setupOpenIconKeydownEnterHandler);
 setupCloseNode.addEventListener('click', setupCloseClickHandler);
 setupCloseNode.addEventListener('keydown', setupCloseKeydownEnterHandler);
+setupWizardCoatVisualNode.addEventListener('click', setupWizardCoatVisualClickHandler);
+setupWizardEyesVisualNode.addEventListener('click', setupWizardEyesVisualClickHandler);
+setupWizardFireballVisualNode.addEventListener('click', setupWizardFireballVisualClickHandler);
