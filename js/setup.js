@@ -29,27 +29,22 @@ var similarListNode = document.querySelector('.setup-similar-list');
 var setupSimilarNode = document.querySelector('.setup-similar');
 
 
-// Вспомогательные функции
-var getRandomArrayEntry = function (array) {
-  return array[Math.floor(Math.random() * array.length)];
-};
-
 var getRandomValidCoatColor = function () {
-  return getRandomArrayEntry(VALID_COAT_COLORS);
+  return window.utilities.getRandomArrayEntry(VALID_COAT_COLORS);
 };
 
 var getRandomValidEyesColor = function () {
-  return getRandomArrayEntry(VALID_EYES_COLORS);
+  return window.utilities.getRandomArrayEntry(VALID_EYES_COLORS);
 };
 
 var getRandomValidFireballColor = function () {
-  return getRandomArrayEntry(VALID_FIREBALL_COLORS);
+  return window.utilities.getRandomArrayEntry(VALID_FIREBALL_COLORS);
 };
 
 
 // Моки
 var createMockupWizardName = function () {
-  return getRandomArrayEntry(MOCKUP_NAMES) + ' ' + getRandomArrayEntry(MOCKUP_SURNAMES);
+  return window.utilities.getRandomArrayEntry(MOCKUP_NAMES) + ' ' + window.utilities.getRandomArrayEntry(MOCKUP_SURNAMES);
 };
 
 var createMockupCoatColor = function () {
@@ -92,16 +87,6 @@ var createWizardNode = function (wizard) {
 
 var createWizardNodes = function (wizards) {
   return wizards.map(createWizardNode);
-};
-
-var renderNodes = function (targetNode, nodes) {
-  var fragment = document.createDocumentFragment();
-
-  for (var i = 0; i < nodes.length; i++) {
-    fragment.appendChild(nodes[i]);
-  }
-
-  targetNode.appendChild(fragment);
 };
 
 var openPopup = function () {
@@ -178,7 +163,7 @@ var setupWizardFireballVisualClickHandler = function () {
 
 var mockupWizards = createMockupWizards();
 var wizardNodes = createWizardNodes(mockupWizards);
-renderNodes(similarListNode, wizardNodes);
+window.utilities.renderNodes(similarListNode, wizardNodes);
 setupSimilarNode.classList.remove('hidden');
 
 setupOpenNode.addEventListener('click', setupOpenClickHandler);
