@@ -18,8 +18,6 @@ var setupWizardEyesVisualNode = setupNode.querySelector('.setup-wizard .wizard-e
 var setupWizardEyesInputNode = setupNode.querySelector('.setup-wizard-appearance input[name="eyes-color"]');
 var setupWizardFireballVisualNode = setupNode.querySelector('.setup-player .setup-fireball-wrap');
 var setupWizardFireballInputNode = setupWizardFireballVisualNode.querySelector('input');
-var similarListNode = document.querySelector('.setup-similar-list');
-var setupSimilarNode = document.querySelector('.setup-similar');
 
 
 var getRandomValidCoatColor = function () {
@@ -108,11 +106,6 @@ var setupWizardFireballVisualClickHandler = function () {
   changeCustomFireballColor();
 };
 
-
-var mockupWizards = window.mockup.createMockupWizards();
-var wizardNodes = window.wizardRender.createWizardNodes(mockupWizards);
-window.utilities.renderNodes(similarListNode, wizardNodes);
-setupSimilarNode.classList.remove('hidden');
 
 setupOpenNode.addEventListener('click', setupOpenClickHandler);
 setupOpenIconNode.addEventListener('keydown', setupOpenIconKeydownEnterHandler);
