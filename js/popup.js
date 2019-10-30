@@ -9,14 +9,28 @@
   var setupUserNameNode = setupNode.querySelector('.setup-user-name');
 
 
+  var popupOriginCoords = {};
+
+  var savePopupOrigin = function () {
+    popupOriginCoords.x = setupNode.offsetLeft;
+    popupOriginCoords.y = setupNode.offsetTop;
+  };
+
+  var resetPopupOrigin = function () {
+    setupNode.style.left = popupOriginCoords.x + 'px';
+    setupNode.style.top = popupOriginCoords.y + 'px';
+  };
+
   var openPopup = function () {
     setupNode.classList.remove('hidden');
     document.addEventListener('keydown', documentKeydownEscHandler);
+    savePopupOrigin();
   };
 
   var closePopup = function () {
     setupNode.classList.add('hidden');
     document.removeEventListener('keydown', documentKeydownEscHandler);
+    resetPopupOrigin();
   };
 
 
