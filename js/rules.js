@@ -6,6 +6,7 @@
   var VALID_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
   var VALID_FIREBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
+
   window.rules = {
     VALID_COAT_COLORS: VALID_COAT_COLORS,
     VALID_EYES_COLORS: VALID_EYES_COLORS,

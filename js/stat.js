@@ -1,5 +1,6 @@
 'use strict';
 
+
 var CLOUD_WIDTH = 420;
 var CLOUD_HEIGHT = 270;
 var CLOUD_COLOR = '#fff';
@@ -85,6 +86,7 @@ var renderGraph = function (ctx, names, times) {
     scoreOriginX += BAR_WIDTH + BAR_MARGIN_X;
   }
 };
+
 
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X, CLOUD_Y);

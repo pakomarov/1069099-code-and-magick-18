@@ -1,5 +1,6 @@
 'use strict';
 
+
 (function () {
   var getRandomArrayEntry = function (array) {
     return array[Math.floor(Math.random() * array.length)];
@@ -14,6 +15,7 @@
 
     targetNode.appendChild(fragment);
   };
+
 
   window.utilities = {
     getRandomArrayEntry: getRandomArrayEntry,

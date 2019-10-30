@@ -4,9 +4,6 @@
 // Блок констант
 var KEYCODE_ESC = 27;
 var KEYCODE_ENTER = 13;
-var MOCKUP_WIZARDS_COUNT = 4;
-var MOCKUP_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
-var MOCKUP_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 
 
 // Поиск DOM-элементов
@@ -36,38 +33,6 @@ var getRandomValidEyesColor = function () {
 
 var getRandomValidFireballColor = function () {
   return window.utilities.getRandomArrayEntry(window.rules.VALID_FIREBALL_COLORS);
-};
-
-
-// Моки
-var createMockupWizardName = function () {
-  return window.utilities.getRandomArrayEntry(MOCKUP_NAMES) + ' ' + window.utilities.getRandomArrayEntry(MOCKUP_SURNAMES);
-};
-
-var createMockupCoatColor = function () {
-  return getRandomValidCoatColor();
-};
-
-var createMockupEyesColor = function () {
-  return getRandomValidEyesColor();
-};
-
-var createMockupWizard = function () {
-  return {
-    name: createMockupWizardName(),
-    coatColor: createMockupCoatColor(),
-    eyesColor: createMockupEyesColor()
-  };
-};
-
-var createMockupWizards = function () {
-  var mockupWizards = [];
-
-  for (var i = 0; i < MOCKUP_WIZARDS_COUNT; i++) {
-    mockupWizards.push(createMockupWizard());
-  }
-
-  return mockupWizards;
 };
 
 
@@ -158,7 +123,7 @@ var setupWizardFireballVisualClickHandler = function () {
 };
 
 
-var mockupWizards = createMockupWizards();
+var mockupWizards = window.mockup.createMockupWizards();
 var wizardNodes = createWizardNodes(mockupWizards);
 window.utilities.renderNodes(similarListNode, wizardNodes);
 setupSimilarNode.classList.remove('hidden');
