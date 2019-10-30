@@ -1,10 +1,6 @@
 'use strict';
 
 (function () {
-  var KEYCODE_ESC = 27;
-  var KEYCODE_ENTER = 13;
-
-
   var setupOpenNode = document.querySelector('.setup-open');
   var setupOpenIconNode = setupOpenNode.querySelector('.setup-open-icon');
   var setupNode = document.querySelector('.setup');
@@ -28,7 +24,7 @@
   };
 
   var setupOpenIconKeydownEnterHandler = function (evt) {
-    if (evt.keyCode === KEYCODE_ENTER) {
+    if (evt.keyCode === window.utilities.KEYCODE_ENTER) {
       openPopup();
     }
   };
@@ -38,13 +34,13 @@
   };
 
   var setupCloseKeydownEnterHandler = function (evt) {
-    if (evt.keyCode === KEYCODE_ENTER) {
+    if (evt.keyCode === window.utilities.KEYCODE_ENTER) {
       closePopup();
     }
   };
 
   var documentKeydownEscHandler = function (evt) {
-    if (evt.keyCode === KEYCODE_ESC && evt.target !== setupUserNameNode) {
+    if (evt.keyCode === window.utilities.KEYCODE_ESC && evt.target !== setupUserNameNode) {
       closePopup();
     }
   };

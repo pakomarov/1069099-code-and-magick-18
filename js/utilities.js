@@ -2,6 +2,10 @@
 
 
 (function () {
+  var KEYCODE_ESC = 27;
+  var KEYCODE_ENTER = 13;
+
+
   var getRandomArrayEntry = function (array) {
     return array[Math.floor(Math.random() * array.length)];
   };
@@ -19,6 +23,8 @@
 
   window.utilities = {
     getRandomArrayEntry: getRandomArrayEntry,
-    renderNodes: renderNodes
+    renderNodes: renderNodes,
+    KEYCODE_ESC: KEYCODE_ESC,
+    KEYCODE_ENTER: KEYCODE_ENTER
   };
 })();
