@@ -1,5 +1,6 @@
 'use strict';
 
+
 (function () {
   var setupOpenNode = document.querySelector('.setup-open');
   var setupOpenIconNode = setupOpenNode.querySelector('.setup-open-icon');
