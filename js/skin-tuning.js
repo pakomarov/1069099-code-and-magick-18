@@ -11,34 +11,37 @@
   var setupWizardFireballInputNode = setupWizardFireballVisualNode.querySelector('input');
 
 
-  var getRandomValidCoatColor = function () {
-    return window.utilities.getRandomArrayEntry(window.rules.VALID_COAT_COLORS);
+  var getDifferentValidCoatColor = function (coatColor) {
+    return window.utilities.getDifferentArrayEntry(window.rules.VALID_COAT_COLORS, coatColor);
   };
 
-  var getRandomValidEyesColor = function () {
-    return window.utilities.getRandomArrayEntry(window.rules.VALID_EYES_COLORS);
+  var getDifferentValidEyesColor = function (eyesColor) {
+    return window.utilities.getDifferentArrayEntry(window.rules.VALID_EYES_COLORS, eyesColor);
   };
 
-  var getRandomValidFireballColor = function () {
-    return window.utilities.getRandomArrayEntry(window.rules.VALID_FIREBALL_COLORS);
+  var getDifferentValidFireballColor = function (fireballColor) {
+    return window.utilities.getDifferentArrayEntry(window.rules.VALID_FIREBALL_COLORS, fireballColor);
   };
 
   var changeCustomWizardCoatColor = function () {
-    var newCoatColor = getRandomValidCoatColor();
+    var oldCoatColor = setupWizardCoatVisualNode.style.fill;
+    var newCoatColor = getDifferentValidCoatColor(oldCoatColor);
 
     setupWizardCoatVisualNode.style.fill = newCoatColor;
     setupWizardCoatInputNode.value = newCoatColor;
   };
 
   var changeCustomWizardEyesColor = function () {
-    var newEyesColor = getRandomValidEyesColor();
+    var oldEyesColor = setupWizardEyesVisualNode.style.fill;
+    var newEyesColor = getDifferentValidEyesColor(oldEyesColor);
 
     setupWizardEyesVisualNode.style.fill = newEyesColor;
     setupWizardEyesInputNode.value = newEyesColor;
   };
 
   var changeCustomFireballColor = function () {
-    var newFireballColor = getRandomValidFireballColor();
+    var oldFireballColor = setupWizardFireballVisualNode.style.backgroundColor;
+    var newFireballColor = getDifferentValidFireballColor(oldFireballColor);
 
     setupWizardFireballVisualNode.style.backgroundColor = newFireballColor;
     setupWizardFireballInputNode.value = newFireballColor;
