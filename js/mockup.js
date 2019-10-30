@@ -6,6 +6,7 @@
   var MOCKUP_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var MOCKUP_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 
+
   var getRandomValidCoatColor = function () {
     return window.utilities.getRandomArrayEntry(window.rules.VALID_COAT_COLORS);
   };

@@ -4,6 +4,7 @@
 (function () {
   var similarWizardTemplateNode = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
+
   var createWizardNode = function (wizard) {
     var newWizardNode = similarWizardTemplateNode.cloneNode('true');
 
