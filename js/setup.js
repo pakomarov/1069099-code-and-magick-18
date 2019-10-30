@@ -18,7 +18,6 @@ var setupWizardEyesVisualNode = setupNode.querySelector('.setup-wizard .wizard-e
 var setupWizardEyesInputNode = setupNode.querySelector('.setup-wizard-appearance input[name="eyes-color"]');
 var setupWizardFireballVisualNode = setupNode.querySelector('.setup-player .setup-fireball-wrap');
 var setupWizardFireballInputNode = setupWizardFireballVisualNode.querySelector('input');
-var similarWizardTemplateNode = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var similarListNode = document.querySelector('.setup-similar-list');
 var setupSimilarNode = document.querySelector('.setup-similar');
 
@@ -37,19 +36,6 @@ var getRandomValidFireballColor = function () {
 
 
 // Бизнес логика
-var createWizardNode = function (wizard) {
-  var newWizardNode = similarWizardTemplateNode.cloneNode('true');
-
-  newWizardNode.querySelector('.setup-similar-label').textContent = wizard.name;
-  newWizardNode.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  newWizardNode.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-
-  return newWizardNode;
-};
-
-var createWizardNodes = function (wizards) {
-  return wizards.map(createWizardNode);
-};
 
 var openPopup = function () {
   setupNode.classList.remove('hidden');
@@ -124,7 +110,7 @@ var setupWizardFireballVisualClickHandler = function () {
 
 
 var mockupWizards = window.mockup.createMockupWizards();
-var wizardNodes = createWizardNodes(mockupWizards);
+var wizardNodes = window.wizardRender.createWizardNodes(mockupWizards);
 window.utilities.renderNodes(similarListNode, wizardNodes);
 setupSimilarNode.classList.remove('hidden');
 
