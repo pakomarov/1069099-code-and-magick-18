@@ -15,13 +15,8 @@
     return newWizardNode;
   };
 
-  var createWizardNodes = function (wizards) {
-    return wizards.map(createWizardNode);
-  };
 
-
-  window.wizardRender = {
-    createWizardNode: createWizardNode,
-    createWizardNodes: createWizardNodes
+  window.wizard = {
+    createWizardNode: createWizardNode
   };
 })();

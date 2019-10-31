@@ -7,7 +7,7 @@
 
 
   var mockupWizards = window.mockup.createMockupWizards();
-  var wizardNodes = window.wizardRender.createWizardNodes(mockupWizards);
+  var wizardNodes = mockupWizards.map(window.wizard.createWizardNode);
   window.utilities.renderNodes(similarListNode, wizardNodes);
   setupSimilarNode.classList.remove('hidden');
 })();

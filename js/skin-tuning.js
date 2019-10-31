@@ -43,7 +43,7 @@
     // .style.backgroundColor всегда представлен в rgb, поэтому хотя исходные цвета для фаербола представлены в hex, при добавлении в DOM их значения автоматически приводятся к rgb
     var oldFireballColorInRgb = setupWizardFireballVisualNode.style.backgroundColor;
     // Для корректного сравнения текущего цвета фаербола с исходными данными по валидным цветам фаербола необходимо привести текущий цвет из rgb обратно в hex
-    var oldFireballColorInHex = window.utilities.convertRgbToHex(oldFireballColorInRgb);
+    var oldFireballColorInHex = window.hexRgbConverter.convertRgbToHex(oldFireballColorInRgb);
     var newFireballColor = getDifferentValidFireballColor(oldFireballColorInHex);
 
     setupWizardFireballVisualNode.style.backgroundColor = newFireballColor;

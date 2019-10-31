@@ -38,32 +38,6 @@
     return getRandomArrayEntry(arrayOfDifferentEntries);
   };
 
-  var parseRgbToIntColorValues = function (rgb) {
-    var parsedStringColorValues = rgb.split('(')[1].split(')')[0].split(',');
-    var intColorValues = parsedStringColorValues.map(function (string) {
-      return parseInt(string, 10);
-    });
-    return intColorValues;
-  };
-
-  var convertIntColorValueToHex = function (intColorValue) {
-    var hexColorValue = intColorValue.toString(16);
-    var hexColorValueWithTwoDigits = hexColorValue.length === 1 ? '0' + hexColorValue : hexColorValue;
-    return hexColorValueWithTwoDigits;
-  };
-
-  var getHexColorFromHexValues = function (hexValues) {
-    return '#' + hexValues.join('');
-  };
-
-  // Вдохновлено этим: https://stackoverflow.com/questions/13070054/convert-rgb-strings-to-hex-in-javascript
-  var convertRgbToHex = function (rgb) {
-    var intColorValues = parseRgbToIntColorValues(rgb);
-    var hexColorValues = intColorValues.map(convertIntColorValueToHex);
-    var hex = getHexColorFromHexValues(hexColorValues);
-    return hex;
-  };
-
   var renderNodes = function (targetNode, nodes) {
     var fragment = document.createDocumentFragment();
 
@@ -79,7 +53,6 @@
     getMaxArrayEntry: getMaxArrayEntry,
     getRandomArrayEntry: getRandomArrayEntry,
     getDifferentArrayEntry: getDifferentArrayEntry,
-    convertRgbToHex: convertRgbToHex,
     renderNodes: renderNodes,
     KEYCODE_ESC: KEYCODE_ESC,
     KEYCODE_ENTER: KEYCODE_ENTER
