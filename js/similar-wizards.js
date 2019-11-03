@@ -6,8 +6,15 @@
   var setupSimilarNode = document.querySelector('.setup-similar');
 
 
-  var mockupWizards = window.mockup.createMockupWizards();
-  var wizardNodes = mockupWizards.map(window.wizard.createWizardNode);
-  window.utilities.renderNodes(similarListNode, wizardNodes);
-  setupSimilarNode.classList.remove('hidden');
+  var setupSimilarWizards = function () {
+    var mockupWizards = window.mockup.createMockupWizards();
+    var wizardNodes = mockupWizards.map(window.wizard.createWizardNode);
+    window.utilities.renderNodes(similarListNode, wizardNodes);
+    setupSimilarNode.classList.remove('hidden');
+  };
+
+
+  window.similarWizards = {
+    setupSimilarWizards: setupSimilarWizards
+  };
 })();

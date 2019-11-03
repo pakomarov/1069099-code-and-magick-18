@@ -109,10 +109,16 @@
     document.addEventListener('mouseup', documentMouseUpHandler);
   };
 
+  var setupMenu = function () {
+    setupOpenNode.addEventListener('click', setupOpenClickHandler);
+    setupOpenIconNode.addEventListener('keydown', setupOpenIconKeydownEnterHandler);
+    setupCloseNode.addEventListener('click', setupCloseClickHandler);
+    setupCloseNode.addEventListener('keydown', setupCloseKeydownEnterHandler);
+    uploadNode.addEventListener('mousedown', uploadNodeMouseDownHandler);
+  };
 
-  setupOpenNode.addEventListener('click', setupOpenClickHandler);
-  setupOpenIconNode.addEventListener('keydown', setupOpenIconKeydownEnterHandler);
-  setupCloseNode.addEventListener('click', setupCloseClickHandler);
-  setupCloseNode.addEventListener('keydown', setupCloseKeydownEnterHandler);
-  uploadNode.addEventListener('mousedown', uploadNodeMouseDownHandler);
+
+  window.menu = {
+    setupMenu: setupMenu
+  };
 })();

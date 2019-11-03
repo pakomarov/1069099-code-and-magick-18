@@ -63,8 +63,14 @@
     changeCustomFireballColor();
   };
 
+  var setupSkinTuning = function () {
+    setupWizardCoatVisualNode.addEventListener('click', setupWizardCoatVisualClickHandler);
+    setupWizardEyesVisualNode.addEventListener('click', setupWizardEyesVisualClickHandler);
+    setupWizardFireballVisualNode.addEventListener('click', setupWizardFireballVisualClickHandler);
+  };
 
-  setupWizardCoatVisualNode.addEventListener('click', setupWizardCoatVisualClickHandler);
-  setupWizardEyesVisualNode.addEventListener('click', setupWizardEyesVisualClickHandler);
-  setupWizardFireballVisualNode.addEventListener('click', setupWizardFireballVisualClickHandler);
+
+  window.skinTuning = {
+    setupSkinTuning: setupSkinTuning
+  };
 })();
