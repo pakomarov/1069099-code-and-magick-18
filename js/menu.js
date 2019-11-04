@@ -109,7 +109,7 @@
     document.addEventListener('mouseup', documentMouseUpHandler);
   };
 
-  var setupMenu = function () {
+  var setup = function () {
     setupOpenNode.addEventListener('click', setupOpenClickHandler);
     setupOpenIconNode.addEventListener('keydown', setupOpenIconKeydownEnterHandler);
     setupCloseNode.addEventListener('click', setupCloseClickHandler);
@@ -119,6 +119,6 @@
 
 
   window.menu = {
-    setupMenu: setupMenu
+    setup: setup
   };
 })();

@@ -1,6 +1,6 @@
 'use strict';
 
 
-window.menu.setupMenu();
-window.similarWizards.setupSimilarWizards();
-window.skinTuning.setupSkinTuning();
+window.menu.setup();
+window.similarWizards.setup();
+window.skinTuning.setup();

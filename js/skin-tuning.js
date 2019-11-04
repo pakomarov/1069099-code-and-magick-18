@@ -63,7 +63,7 @@
     changeCustomFireballColor();
   };
 
-  var setupSkinTuning = function () {
+  var setup = function () {
     setupWizardCoatVisualNode.addEventListener('click', setupWizardCoatVisualClickHandler);
     setupWizardEyesVisualNode.addEventListener('click', setupWizardEyesVisualClickHandler);
     setupWizardFireballVisualNode.addEventListener('click', setupWizardFireballVisualClickHandler);
@@ -71,6 +71,6 @@
 
 
   window.skinTuning = {
-    setupSkinTuning: setupSkinTuning
+    setup: setup
   };
 })();

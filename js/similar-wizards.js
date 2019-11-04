@@ -6,7 +6,7 @@
   var setupSimilarNode = document.querySelector('.setup-similar');
 
 
-  var setupSimilarWizards = function () {
+  var setup = function () {
     var mockupWizards = window.mockup.createMockupWizards();
     var wizardNodes = mockupWizards.map(window.wizard.createWizardNode);
     window.utilities.renderNodes(similarListNode, wizardNodes);
@@ -15,6 +15,6 @@
 
 
   window.similarWizards = {
-    setupSimilarWizards: setupSimilarWizards
+    setup: setup
   };
 })();
