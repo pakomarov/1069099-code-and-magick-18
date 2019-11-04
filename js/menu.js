@@ -12,6 +12,7 @@
 
   var popupOriginCoords = {};
 
+
   var savePopupOrigin = function () {
     popupOriginCoords.x = setupNode.offsetLeft;
     popupOriginCoords.y = setupNode.offsetTop;
