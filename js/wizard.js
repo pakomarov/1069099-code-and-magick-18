@@ -9,8 +9,8 @@
     var newWizardNode = similarWizardTemplateNode.cloneNode('true');
 
     newWizardNode.querySelector('.setup-similar-label').textContent = wizard.name;
-    newWizardNode.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-    newWizardNode.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    newWizardNode.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
+    newWizardNode.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
 
     return newWizardNode;
   };
