@@ -1,6 +1,8 @@
 'use strict';
 
 
-window.menu.setup();
-window.similarWizards.setup();
-window.skinTuning.setup();
+(function () {
+  window.menu.setup();
+  window.similarWizards.setup();
+  window.skinTuning.setup();
+})();

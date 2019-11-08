@@ -8,6 +8,7 @@
   var setupCloseNode = setupNode.querySelector('.setup-close');
   var setupUserNameNode = setupNode.querySelector('.setup-user-name');
   var uploadNode = setupNode.querySelector('.upload');
+  var formNode = setupNode.querySelector('.setup-wizard-form');
 
 
   var popupOriginCoords = {};
@@ -110,12 +111,27 @@
     document.addEventListener('mouseup', documentMouseUpHandler);
   };
 
+  var onLoad = function () {
+    closePopup();
+  };
+
+  var onError = function (error) {
+    window.error.showWarning(error);
+  };
+
+  var submitHandler = function (evt) {
+    var formData = new FormData(formNode);
+    window.backend.save(onLoad, onError, formData);
+    evt.preventDefault();
+  };
+
   var setup = function () {
     setupOpenNode.addEventListener('click', setupOpenClickHandler);
     setupOpenIconNode.addEventListener('keydown', setupOpenIconKeydownEnterHandler);
     setupCloseNode.addEventListener('click', setupCloseClickHandler);
     setupCloseNode.addEventListener('keydown', setupCloseKeydownEnterHandler);
     uploadNode.addEventListener('mousedown', uploadNodeMouseDownHandler);
+    formNode.addEventListener('submit', submitHandler);
   };
 
 
