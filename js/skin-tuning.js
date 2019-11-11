@@ -11,12 +11,20 @@
   var setupWizardFireballInputNode = setupWizardFireballVisualNode.querySelector('input');
 
 
+  var currentCoatColor = setupWizardCoatVisualNode.style.fill;
+  var currentEyeColor = setupWizardEyesVisualNode.style.fill;
+  // Необходимо конвертировать, т.к. свойство backgroundColor всегда хранится в rgb формате
+  var currentFireballColor = window.hexRgbConverter.convertRgbToHex(setupWizardFireballVisualNode.style.backgroundColor);
+  var onCoatChange = function () {};
+  var onEyesChange = function () {};
+
+
   var getDifferentValidCoatColor = function (coatColor) {
     return window.utilities.getDifferentArrayEntry(window.rules.VALID_COAT_COLORS, coatColor);
   };
 
-  var getDifferentValidEyesColor = function (eyesColor) {
-    return window.utilities.getDifferentArrayEntry(window.rules.VALID_EYES_COLORS, eyesColor);
+  var getDifferentValidEyeColor = function (eyeColor) {
+    return window.utilities.getDifferentArrayEntry(window.rules.VALID_EYE_COLORS, eyeColor);
   };
 
   var getDifferentValidFireballColor = function (fireballColor) {
@@ -24,30 +32,29 @@
   };
 
   var changeCustomWizardCoatColor = function () {
-    var oldCoatColor = setupWizardCoatVisualNode.style.fill;
-    var newCoatColor = getDifferentValidCoatColor(oldCoatColor);
+    var newCoatColor = getDifferentValidCoatColor(currentCoatColor);
 
     setupWizardCoatVisualNode.style.fill = newCoatColor;
     setupWizardCoatInputNode.value = newCoatColor;
+    currentCoatColor = newCoatColor;
+    onCoatChange();
   };
 
-  var changeCustomWizardEyesColor = function () {
-    var oldEyesColor = setupWizardEyesVisualNode.style.fill;
-    var newEyesColor = getDifferentValidEyesColor(oldEyesColor);
+  var changeCustomWizardEyeColor = function () {
+    var newEyeColor = getDifferentValidEyeColor(currentEyeColor);
 
-    setupWizardEyesVisualNode.style.fill = newEyesColor;
-    setupWizardEyesInputNode.value = newEyesColor;
+    setupWizardEyesVisualNode.style.fill = newEyeColor;
+    setupWizardEyesInputNode.value = newEyeColor;
+    currentEyeColor = newEyeColor;
+    onEyesChange();
   };
 
   var changeCustomFireballColor = function () {
-    // .style.backgroundColor всегда представлен в rgb, поэтому хотя исходные цвета для фаербола представлены в hex, при добавлении в DOM их значения автоматически приводятся к rgb
-    var oldFireballColorInRgb = setupWizardFireballVisualNode.style.backgroundColor;
-    // Для корректного сравнения текущего цвета фаербола с исходными данными по валидным цветам фаербола необходимо привести текущий цвет из rgb обратно в hex
-    var oldFireballColorInHex = window.hexRgbConverter.convertRgbToHex(oldFireballColorInRgb);
-    var newFireballColor = getDifferentValidFireballColor(oldFireballColorInHex);
+    var newFireballColor = getDifferentValidFireballColor(currentFireballColor);
 
     setupWizardFireballVisualNode.style.backgroundColor = newFireballColor;
     setupWizardFireballInputNode.value = newFireballColor;
+    currentFireballColor = newFireballColor;
   };
 
 
@@ -56,12 +63,13 @@
   };
 
   var setupWizardEyesVisualClickHandler = function () {
-    changeCustomWizardEyesColor();
+    changeCustomWizardEyeColor();
   };
 
   var setupWizardFireballVisualClickHandler = function () {
     changeCustomFireballColor();
   };
+
 
   var setup = function () {
     setupWizardCoatVisualNode.addEventListener('click', setupWizardCoatVisualClickHandler);
@@ -69,8 +77,28 @@
     setupWizardFireballVisualNode.addEventListener('click', setupWizardFireballVisualClickHandler);
   };
 
+  var addCoatChangeListener = function (callback) {
+    onCoatChange = callback;
+  };
+
+  var addEyesChangeListener = function (callback) {
+    onEyesChange = callback;
+  };
+
+  var getCurrentCoatColor = function () {
+    return currentCoatColor;
+  };
+
+  var getCurrentEyeColor = function () {
+    return currentEyeColor;
+  };
+
 
   window.skinTuning = {
-    setup: setup
+    setup: setup,
+    getCurrentCoatColor: getCurrentCoatColor,
+    getCurrentEyeColor: getCurrentEyeColor,
+    addCoatChangeListener: addCoatChangeListener,
+    addEyesChangeListener: addEyesChangeListener
   };
 })();
